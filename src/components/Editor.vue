@@ -63,12 +63,22 @@ onMounted(() => {
 <template>
   <div class="editor-container">
     <div class="toolbar">
-      <button @click="undo"><i class="icon">↶</i></button>
-      <button @click="redo"><i class="icon">↷</i></button>
-      <button @click="applyStyle('h1')">H1</button>
-      <button @click="applyStyle('p')">P</button>
-      <button @click="insertImage"><i class="icon">🖼</i></button>
-      <button @click="copyHtml"><i class="icon">📋</i></button>
+      <button @click="undo">
+        <img src="/public/VectorL.svg" alt="" />
+      </button>
+      <button @click="redo">
+        <img src="/public/VectorR.svg" alt="" />
+      </button>
+      <button @click="applyStyle('h1')">
+        <img src="/public/h1.svg" alt="" />
+      </button>
+      <button @click="applyStyle('p')">
+        <img src="/public/p.svg" alt="" />
+      </button>
+      <button @click="insertImage">
+        <img src="/public/InsertImg.svg" alt="" />
+      </button>
+      <div @click="copyHtml">Скопировать HTML</div>
     </div>
 
     <div
@@ -90,12 +100,24 @@ onMounted(() => {
   display: flex;
   gap: 8px;
   margin-bottom: 16px;
+  align-items: center;
 }
 
 .toolbar button {
-  padding: 8px;
-  background: #f4f4f4;
-  border: 1px solid #ccc;
+  width: 42px;
+  height: 38px;
+  border-radius: 4px;
+  background: rgba(40, 40, 40, 1);
+  border: none;
+  cursor: pointer;
+}
+
+.toolbar div {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 23px;
+  color: rgba(99, 158, 255, 1);
   cursor: pointer;
 }
 
@@ -103,11 +125,16 @@ onMounted(() => {
   background: #e0e0e0;
 }
 
+.toolbar div:hover {
+  color: #e0e0e0;
+}
+
 .editor {
-  border: 1px solid #ccc;
+  outline: none;
   padding: 16px;
-  min-height: 300px;
-  background: #fff;
+  min-height: 100vh;
+  color: rgba(234, 234, 234, 1);
+  border: 1px solid #2c2c2c;
   font-size: 16px;
   line-height: 1.5;
 }

@@ -1,0 +1,8 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: rgb(27, 27, 27);
+  padding: 77px 107px;
+}
