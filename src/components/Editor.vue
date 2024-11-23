@@ -1,7 +1,8 @@
 <script setup>
 import { ref, reactive, onMounted } from "vue";
 
-const editor = ref(null); // Ссылка на редактируемую область
+const editor = ref(null);
+const currentFormat = ref("p"); // Формат по умолчанию
 const state = reactive({
   history: [], // История изменений
   historyIndex: -1,
@@ -31,13 +32,10 @@ const redo = () => {
   }
 };
 
-// Форматирование текста (заголовок или абзац)
-const format = (tag) => {
-  document.execCommand(
-    tag === "h1" ? "formatBlock" : "formatBlock",
-    false,
-    tag
-  );
+// Применение стиля (H1, P)
+const applyStyle = (style) => {
+  currentFormat.value = style;
+  document.execCommand("fontSize", false, style === "h1" ? "6" : "3");
 };
 
 // Вставка изображения по URL
@@ -64,17 +62,15 @@ onMounted(() => {
 
 <template>
   <div class="editor-container">
-    <!-- Панель инструментов -->
     <div class="toolbar">
       <button @click="undo"><i class="icon">↶</i></button>
       <button @click="redo"><i class="icon">↷</i></button>
-      <button @click="format('h1')"><i class="icon">H1</i></button>
-      <button @click="format('p')"><i class="icon">P</i></button>
-      <button @click="insertImage"><i class="icon">🖼️</i></button>
+      <button @click="applyStyle('h1')">H1</button>
+      <button @click="applyStyle('p')">P</button>
+      <button @click="insertImage"><i class="icon">🖼</i></button>
       <button @click="copyHtml"><i class="icon">📋</i></button>
     </div>
 
-    <!-- Редактируемая область -->
     <div
       class="editor"
       contenteditable="true"
@@ -89,25 +85,42 @@ onMounted(() => {
   width: 80%;
   margin: 0 auto;
 }
+
 .toolbar {
   display: flex;
   gap: 8px;
   margin-bottom: 16px;
 }
+
 .toolbar button {
   padding: 8px;
   background: #f4f4f4;
   border: 1px solid #ccc;
   cursor: pointer;
 }
+
 .toolbar button:hover {
   background: #e0e0e0;
 }
+
 .editor {
   border: 1px solid #ccc;
   padding: 16px;
   min-height: 300px;
   background: #fff;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.editor h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.editor p {
+  font-size: 16px;
+  margin: 0;
 }
 
 img {
