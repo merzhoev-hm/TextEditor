@@ -75,9 +75,12 @@ onMounted(() => {
     </div>
 
     <!-- Редактируемая область -->
-    <div class="editor" contenteditable="true" ref="editor" @input="saveState">
-      Редактируемый текст...
-    </div>
+    <div
+      class="editor"
+      contenteditable="true"
+      ref="editor"
+      @input="saveState"
+    ></div>
   </div>
 </template>
 
@@ -105,5 +108,9 @@ onMounted(() => {
   padding: 16px;
   min-height: 300px;
   background: #fff;
+}
+
+img {
+  max-width: 100%;
 }
 </style>
