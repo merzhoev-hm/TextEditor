@@ -1,5 +1,5 @@
-# .
-
+# ССЫЛКА НА ДЕПЛОЙ
+https://friendly-granita-aee26c.netlify.app/
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
